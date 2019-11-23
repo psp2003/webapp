@@ -1,2 +1,46 @@
 ---
-# tasks file for webapp
+# tasks file for roles/web-app-role
+- name: log into docker hub registry
+  docker_login:
+        email: "vitas1997@yandex.ru"
+        username: "minisheriff"
+        password: "{{ dockerhub_pass }}"
+
+- name: create docker network
+  become: true
+  become_method: sudo
+  docker_network:
+    name: containers_net
+
+- name: launch 1st container on port 5021
+  docker_container:
+    name: web-app-1
+    hostname: wa1.local
+    image: "minisheriff/cicd-exam:p3"
+    pull: true
+    ports:
+      - "5021:5000"
+    networks:
+      - name: containers_net
+
+- name: launch 1st container on port 5022
+  docker_container:
+    name: web-app-2
+    hostname: wa2.local
+    image: "minisheriff/cicd-exam:p3"
+    pull: true
+    ports:
+      - "5022:5000"
+    networks:
+      - name: containers_net
+
+- name: launch 1st container on port 5023
+  docker_container:
+    name: web-app-3
+    hostname: wa3.local
+    image: "minisheriff/cicd-exam:p3"
+    pull: true
+    ports:
+      - "5023:5000"
+    networks:
+      - name: containers_net
