@@ -23,7 +23,7 @@
     networks:
       - name: containers_net
 
-- name: launch 1st container on port 5022
+- name: launch 2nd container on port 5022
   docker_container:
     name: web-app-2
     hostname: wa2.local
@@ -34,7 +34,7 @@
     networks:
       - name: containers_net
 
-- name: launch 1st container on port 5023
+- name: launch 3rd container on port 5023
   docker_container:
     name: web-app-3
     hostname: wa3.local
